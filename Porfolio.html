@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Luis Feng Wu</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #ffffff;
+      --text: #111111;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --accent: #111111;
+      --tag-bg: #f3f4f6;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      font-size: 16px;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 48px;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo {
+      font-weight: 600;
+      font-size: 15px;
+      letter-spacing: -0.3px;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-size: 14px;
+      color: var(--muted);
+      font-weight: 400;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover { color: var(--text); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+    }
+
+    .hero-avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      object-fit: cover;
+      object-position: center top;
+      margin-bottom: 24px;
+      border: 3px solid var(--border);
+    }
+
+    .hero-tag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .hero-name {
+      font-size: clamp(48px, 8vw, 88px);
+      font-weight: 600;
+      letter-spacing: -2px;
+      line-height: 1.0;
+      margin-bottom: 20px;
+    }
+
+    .hero-title {
+      font-size: clamp(16px, 2.5vw, 22px);
+      font-weight: 300;
+      color: var(--muted);
+      margin-bottom: 40px;
+      letter-spacing: -0.3px;
+    }
+
+    .hero-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--text);
+      color: #fff;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 28px;
+      border-radius: 100px;
+      transition: opacity 0.2s;
+    }
+
+    .hero-cta:hover { opacity: 0.8; }
+
+    .hero-ctas { display: flex; gap: 12px; align-items: center; }
+
+    .hero-cta-outline {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 12px 28px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+      transition: border-color 0.2s, background 0.2s;
+    }
+
+    .hero-cta-outline:hover { border-color: var(--text); background: var(--tag-bg); }
+
+    .hero-social {
+      display: flex;
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .hero-social a {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      font-size: 13px;
+      color: var(--muted);
+      font-weight: 400;
+      border: 1px solid var(--border);
+      padding: 8px 16px;
+      border-radius: 100px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+
+    .hero-social a:hover { border-color: var(--text); color: var(--text); }
+
+    /* ── SECTIONS ── */
+    section {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 96px 24px;
+      border-top: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 40px;
+    }
+
+    /* ── ABOUT ── */
+    .about-text {
+      font-size: 18px;
+      font-weight: 300;
+      line-height: 1.75;
+      color: #374151;
+    }
+
+    .about-text strong { font-weight: 500; color: var(--text); }
+
+    .about-photo {
+      width: 100%;
+      max-height: 400px;
+      object-fit: cover;
+      object-position: center 20%;
+      border-radius: 16px;
+      margin: 36px 0;
+    }
+
+    .about-edu {
+      margin-top: 40px;
+      padding: 24px;
+      background: var(--tag-bg);
+      border-radius: 12px;
+    }
+
+    .about-edu { display: grid; gap: 12px; }
+    .about-edu-item { padding: 20px 24px; background: var(--tag-bg); border-radius: 12px; }
+    .about-edu-item h4 { font-size: 14px; font-weight: 500; margin-bottom: 4px; }
+    .about-edu-item p  { font-size: 13px; color: var(--muted); }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .skill-group h4 {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--muted);
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .tag {
+      font-size: 13px;
+      font-weight: 400;
+      background: var(--tag-bg);
+      color: var(--text);
+      padding: 6px 14px;
+      border-radius: 100px;
+      border: 1px solid var(--border);
+    }
+
+    /* ── PROJECTS ── */
+    .projects-grid {
+      display: grid;
+      gap: 16px;
+    }
+
+    .project-card {
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      cursor: default;
+    }
+
+    .project-card:hover {
+      border-color: #d1d5db;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 12px;
+    }
+
+    .project-name {
+      font-size: 16px;
+      font-weight: 500;
+      letter-spacing: -0.3px;
+    }
+
+    .project-link {
+      text-decoration: none;
+      font-size: 12px;
+      color: var(--muted);
+      border: 1px solid var(--border);
+      padding: 4px 12px;
+      border-radius: 100px;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .project-link:hover { color: var(--text); border-color: var(--text); }
+
+    .project-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center;
+      padding: 48px 24px;
+      border-top: 1px solid var(--border);
+      font-size: 13px;
+      color: var(--muted);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      nav { padding: 16px 20px; }
+      .nav-links { gap: 20px; }
+      .skills-grid { grid-template-columns: 1fr; }
+      .hero-social { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a class="nav-logo" href="#hero">Luis Feng Wu</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <img class="hero-avatar" src="Image_20260604094909_19_54.jpg" alt="Luis Feng Wu" />
+    <span class="hero-tag">New Grad &nbsp;·&nbsp; Available May 2026</span>
+    <h1 class="hero-name">Luis Feng Wu</h1>
+    <p class="hero-title">CS Student &nbsp;·&nbsp; New Grad May 2026 &nbsp;·&nbsp; Hunter College, CUNY</p>
+    <div class="hero-ctas">
+      <a class="hero-cta" href="#projects">View my work</a>
+      <a class="hero-cta-outline" href="Luis_S_Resume.pdf" download>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Resume
+      </a>
+    </div>
+    <div class="hero-social">
+      <a href="https://www.linkedin.com/in/luis-fengwu/" target="_blank" rel="noopener">
+        <!-- LinkedIn icon -->
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+        LinkedIn
+      </a>
+      <a href="https://www.instagram.com/loouisin/" target="_blank" rel="noopener">
+        <!-- Instagram icon -->
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        Instagram
+      </a>
+      <a href="mailto:louiscesar1021@gmail.com">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+        Email
+      </a>
+      <a href="https://github.com/LowkeyDH" target="_blank" rel="noopener">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        GitHub
+      </a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label">About</p>
+    <p class="about-text">
+      Hi, I'm <strong>Luis</strong> — a CS student at Hunter College, CUNY, graduating in May 2026.
+      I'm a new grad actively looking for my <strong>first full-time software engineering role</strong>
+      where I can keep learning, contribute to a real product, and grow alongside a great team.
+      <br /><br />
+      I love building things — from full-stack web apps to real-time computer vision systems. There's
+      something satisfying about taking an idea from a blank file all the way to something that actually
+      works in a browser. I care a lot about writing code that's clean and makes sense to the next person who reads it.
+      <br /><br />
+      Outside of coding, I'm into <strong>skiing</strong>, meeting new people, and exploring new places —
+      that photo was taken in Mexico City. I speak English, Mandarin, and conversational Spanish, so I'm
+      always happy to connect with people from different backgrounds.
+    </p>
+    <img class="about-photo" src="Image_20260604094449_18_54.jpg" alt="Luis in Mexico City" />
+    <div class="about-edu">
+      <div class="about-edu-item">
+        <h4>CUNY Hunter College &nbsp;·&nbsp; B.S. Computer Science</h4>
+        <p>Sep 2024 – May 2026 &nbsp;·&nbsp; GPA 3.24 &nbsp;·&nbsp; New York, NY</p>
+      </div>
+      <div class="about-edu-item">
+        <h4>CUNY BMCC &nbsp;·&nbsp; A.S. Computer Science</h4>
+        <p>2019 – 2021 &nbsp;·&nbsp; New York, NY</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label">Skills</p>
+    <div class="skills-grid">
+      <div class="skill-group">
+        <h4>Languages</h4>
+        <div class="tag-list">
+          <span class="tag">Python</span>
+          <span class="tag">Java</span>
+          <span class="tag">JavaScript</span>
+          <span class="tag">C++</span>
+          <span class="tag">SQL</span>
+          <span class="tag">HTML/CSS</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Frontend</h4>
+        <div class="tag-list">
+          <span class="tag">React</span>
+          <span class="tag">Vite</span>
+          <span class="tag">REST API Integration</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Backend</h4>
+        <div class="tag-list">
+          <span class="tag">Flask</span>
+          <span class="tag">Node.js</span>
+          <span class="tag">Express</span>
+          <span class="tag">RESTful API Design</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Data &amp; ML</h4>
+        <div class="tag-list">
+          <span class="tag">Pandas</span>
+          <span class="tag">NumPy</span>
+          <span class="tag">scikit-learn</span>
+          <span class="tag">MediaPipe</span>
+          <span class="tag">Matplotlib</span>
+          <span class="tag">Seaborn</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Databases &amp; Tools</h4>
+        <div class="tag-list">
+          <span class="tag">MySQL</span>
+          <span class="tag">Git</span>
+          <span class="tag">GitHub</span>
+          <span class="tag">Linux/Bash</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h4>Concepts</h4>
+        <div class="tag-list">
+          <span class="tag">OOP</span>
+          <span class="tag">Relational Schema Design</span>
+          <span class="tag">Computer Vision</span>
+          <span class="tag">Real-Time Systems</span>
+          <span class="tag">Agile/Scrum</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label">Projects</p>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <span class="project-name">MotionCorrect</span>
+            <span style="font-size:12px;color:var(--muted);margin-left:10px;">2026</span>
+          </div>
+          <a class="project-link" href="https://github.com/LowkeyDH" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+        <p class="project-desc">
+          Real-time exercise form detection system that streams browser webcam frames to a Python/Flask backend
+          for pose inference, returning live form classification to a React frontend. Built a MediaPipe pipeline
+          computing 33 body keypoints per frame, a rep-counting state machine, and an LLM-backed feedback engine
+          that converts detected form errors into personalized correction cues.
+        </p>
+        <div class="tag-list">
+          <span class="tag">Python</span>
+          <span class="tag">Flask</span>
+          <span class="tag">MediaPipe</span>
+          <span class="tag">React</span>
+          <span class="tag">Vite</span>
+          <span class="tag">LLM API</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <span class="project-name">FitLog</span>
+            <span style="font-size:12px;color:var(--muted);margin-left:10px;">2025</span>
+          </div>
+          <a class="project-link" href="https://github.com/LowkeyDH" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+        <p class="project-desc">
+          Full-stack fitness tracking web app built end-to-end as the sole engineer. Designed a normalized MySQL
+          schema for users, workouts, and goals; implemented CRUD endpoints with historical progress comparison;
+          and developed a query layer powering time-series progress charts — all without third-party UI libraries.
+        </p>
+        <div class="tag-list">
+          <span class="tag">Java</span>
+          <span class="tag">MySQL</span>
+          <span class="tag">React</span>
+          <span class="tag">HTML/CSS/JS</span>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div>
+            <span class="project-name">NYC Educational Inequality Analysis</span>
+            <span style="font-size:12px;color:var(--muted);margin-left:10px;">2026</span>
+          </div>
+          <a class="project-link" href="https://github.com/LowkeyDH" target="_blank" rel="noopener">GitHub ↗</a>
+        </div>
+        <p class="project-desc">
+          Python data pipeline that ingests, joins, and cleans 4 NYC Open Data CSV datasets via multi-key Pandas
+          joins, with handling of schema drift and missing values. Produced visualizations — bar charts, heatmaps,
+          and regression plots — surfacing funding-versus-graduation-rate correlations across NYC boroughs.
+        </p>
+        <div class="tag-list">
+          <span class="tag">Python</span>
+          <span class="tag">Pandas</span>
+          <span class="tag">Matplotlib</span>
+          <span class="tag">Seaborn</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Designed &amp; built by Luis Feng Wu &nbsp;·&nbsp; 2026</p>
+  </footer>
+
+</body>
+</html>
